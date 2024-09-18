@@ -2,6 +2,8 @@ package pro1.E_Commerce.Entities;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,7 +17,8 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @OneToMany(mappedBy = "category",cascade =CascadeType.ALL)
+    @OneToMany(mappedBy = "category",cascade =CascadeType.ALL,orphanRemoval = true)
+    @JsonIgnore
     private List<Products> products;
 
 
